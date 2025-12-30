@@ -28,11 +28,6 @@ body {
     padding: 25px 20px;
 }
 
-.sidebar h2 {
-    text-align: left;
-    margin-left: 15px;
-    margin-bottom: 30px;
-}
 
 .sidebar ul {
     list-style: none;
@@ -54,6 +49,12 @@ body {
     background: rgba(255,255,255,0.2);
 }
 
+.sidebar .logo {
+    margin-left: 15px;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
 /* MAIN */
 .admin-main {
     flex: 1;
@@ -65,11 +66,12 @@ body {
 /* TOPBAR */
 .topbar {
     background: #ffffff;
-    padding: 15px 25px;
+    padding: 15px 32px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    font-weight: bold;
 }
 
 .admin-user {
@@ -196,4 +198,312 @@ body {
     opacity: 0;
     transform: translateY(-20px);
   }
+}
+
+/* STATUS BADGE */
+.status {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.status.menunggu {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status.diproses {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.status.selesai {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status.ditolak {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* BUTTON SMALL */
+.btn-sm {
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 13px;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.btn-view {
+    background: #2563eb;
+}
+
+.btn-view:hover {
+    background: #1e40af;
+}
+
+.btn-verifikasi {
+    background: #07bd4d;
+}
+
+.btn-verifikasi {
+    background: #048c38;
+}
+
+.empty-data {
+    text-align: center;
+    padding: 25px;
+    font-style: italic;
+    color: #64748b;
+}
+
+/* DETAIL CARD */
+.detail-card {
+    width: 100%;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* DETAIL TABLE */
+.detail-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.detail-table th {
+    width: 35%;
+    text-align: left;
+    padding: 12px;
+    font-weight: 600;
+}
+
+.detail-table td {
+    padding: 12px;
+}
+
+/* ACTION */
+.detail-action {
+    margin-top: 20px;
+}
+
+.btn-back {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #64748b;
+    color: #ffffff;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.btn-back:hover {
+    background: #475569;
+}
+
+/* ===============================
+   VERIFIKASI PENGAJUAN
+================================ */
+.verify-wrapper {
+    width: 100%;
+}
+
+.verify-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+}
+
+.verify-card h3 {
+    margin-bottom: 20px;
+    color: #2563eb;
+    font-size: 20px;
+}
+
+/* FORM GROUP */
+.verify-card .form-group {
+    margin-bottom: 18px;
+}
+
+.verify-card label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #1e293b;
+}
+
+.verify-card select,
+.verify-card textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    font-size: 14px;
+    outline: none;
+    font-family: inherit;
+}
+
+.verify-card textarea {
+    resize: vertical;
+}
+
+.verify-card select:focus,
+.verify-card textarea:focus {
+    border-color: #2563eb;
+}
+
+/* ACTION BUTTON */
+.verify-action {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-save {
+    padding: 10px 22px;
+    background: #2563eb;
+    color: #ffffff;
+    border-radius: 8px;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-save:hover {
+    background: #1e40af;
+}
+
+.btn-cancel {
+    padding: 10px 18px;
+    background: #64748b;
+    color: #ffffff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.btn-cancel:hover {
+    background: #475569;
+}
+
+/* ===============================
+   JENIS LAYANAN
+================================ */
+.layanan-wrapper {
+    max-width: 1100px;
+}
+
+.layanan-card {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.layanan-card h3 {
+    margin-bottom: 15px;
+    color: #2563eb;
+}
+
+/* DELETE BUTTON */
+.btn-delete {
+    padding: 6px 14px;
+    background: #dc2626;
+    color: #ffffff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.btn-delete:hover {
+    background: #991b1b;
+}
+
+/* ===============================
+   JENIS LAYANAN
+================================ */
+.layanan-wrapper {
+    max-width: 100%;
+}
+
+.layanan-card {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.layanan-card h3 {
+    margin-bottom: 15px;
+    color: #2563eb;
+}
+
+/* DELETE BUTTON */
+.btn-delete {
+    padding: 6px 14px;
+    background: #dc2626;
+    color: #ffffff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.btn-delete:hover {
+    background: #991b1b;
+}
+
+/* ===============================
+   LAPORAN
+================================ */
+.laporan-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-box {
+    display: flex;
+    gap: 10px;
+}
+
+.search-box input {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    width: 260px;
+}
+
+.search-box button {
+    padding: 8px 16px;
+    background: #2563eb;
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.export-btn a {
+    padding: 8px 14px;
+    border-radius: 8px;
+    color: #fff;
+    text-decoration: none;
+    margin-left: 5px;
+    font-size: 14px;
+}
+
+.btn-excel {
+    background: #16a34a;
+}
+
+.btn-pdf {
+    background: #dc2626;
 }

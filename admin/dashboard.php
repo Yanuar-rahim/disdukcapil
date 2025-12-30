@@ -5,7 +5,7 @@ $no = 1;
 
 /* PROTEKSI ADMIN */
 if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'admin') {
-    header("Location: ../login.php");
+    header("Location: ../index.php");
     exit;
 }
 
@@ -56,7 +56,7 @@ $nama = $_SESSION['user_nama'];
                 </div>
 
                 <div class="stat-card">
-                    <h3>Pengajuan Hari Ini</h3>
+                    <h3>Pengguna Website</h3>
                     <p>8</p>
                 </div>
 

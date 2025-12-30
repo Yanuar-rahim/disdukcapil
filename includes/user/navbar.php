@@ -22,10 +22,10 @@ $isLogin = isset($_SESSION['login']) && $_SESSION['login'] === true;
         <?php else: ?>
             <!-- NAVBAR USER (SETELAH LOGIN) -->
              <div class="nav-link">
-                 <a href="/user/home.php">Home</a>
-                 <a href="/user/ajukan.php">Ajukan Dokumen</a>
-                 <a href="/user/status.php">Status Pengajuan</a>
-                 <a href="/user/profil.php">Profil</a>
+                 <a href="index.php">Home</a>
+                 <a href="ajukan.php">Ajukan Dokumen</a>
+                 <a href="status.php">Status Pengajuan</a>
+                 <a href="profil.php">Profil</a>
              </div>
              <div class="auth-btn">
                  <a href="../logout.php" class="login">Logout</a>
