@@ -1,11 +1,5 @@
 <?php
-session_start();
-
-/*
-    Session dianggap login jika:
-    $_SESSION['user_login'] bernilai true
-*/
-$isLogin = isset($_SESSION['user_login']) && $_SESSION['user_login'] === true;
+$isLogin = isset($_SESSION['login']) && $_SESSION['login'] === true;
 ?>
 
 <header>
@@ -14,19 +8,28 @@ $isLogin = isset($_SESSION['user_login']) && $_SESSION['user_login'] === true;
     <nav>
         <?php if (!$isLogin): ?>
             <!-- NAVBAR PUBLIK (SEBELUM LOGIN) -->
-            <a href="/index.php">Home</a>
-            <a href="/user/layanan.php">Layanan</a>
-            <a href="/user/cara-pengajuan.php">Cara Pengajuan</a>
-            <a href="/login.php">Cek Status</a>
-            <a href="/login.php">Login / Daftar</a>
+             <div class="nav-link">
+                 <a href="index.php#home">Home</a>
+                 <a href="#layanan">Layanan</a>
+                 <a href="#cara">Cara Pengajuan</a>
+                 <a href="login.php">Cek Status</a>
+             </div>
+            <div class="auth-btn">
+                <a href="login.php" class="login">Login</a>
+                <a href="register.php" class="regis">Daftar</a>
+            </div>
 
         <?php else: ?>
             <!-- NAVBAR USER (SETELAH LOGIN) -->
-            <a href="/user/home.php">Home</a>
-            <a href="/user/ajukan.php">Ajukan Dokumen</a>
-            <a href="/user/status.php">Status Pengajuan</a>
-            <a href="/user/profil.php">Profil</a>
-            <a href="/logout.php">Logout</a>
+             <div class="nav-link">
+                 <a href="/user/home.php">Home</a>
+                 <a href="/user/ajukan.php">Ajukan Dokumen</a>
+                 <a href="/user/status.php">Status Pengajuan</a>
+                 <a href="/user/profil.php">Profil</a>
+             </div>
+             <div class="auth-btn">
+                 <a href="../logout.php" class="login">Logout</a>
+             </div>
         <?php endif; ?>
     </nav>
 </header>

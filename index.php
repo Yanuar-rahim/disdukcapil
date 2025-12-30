@@ -7,15 +7,18 @@
 </head>
 <body>
 
-<?php include 'includes/user/navbar.php'; ?>
+<span id="home">
+    <?php include 'includes/user/navbar.php'; ?>
+</span>
 
 <section class="hero">
     <h1>Layanan Pengajuan Dokumen Kependudukan Online</h1>
     <p>Ajukan KTP, KK, Akta, dan dokumen lainnya tanpa datang ke kantor.</p>
     <div class="hero-btn">
         <a href="login.php" class="btn-primary">Ajukan Sekarang</a>
-        <a href="/user/status.php" class="btn-secondary">Cek Status</a>
+        <a href="login.php" class="btn-secondary">Cek Status</a>
     </div>
+    <span id="layanan"></span>
 </section>
 
 
@@ -52,24 +55,24 @@
 
         </div>
     </section>
-
-    <!-- Section Cara Pengajuan -->
-    <section class="cara">
-        <h2>Cara Pengajuan</h2>
-        <ol>
-            <li>Registrasi akun</li>
-            <li>Login ke sistem</li>
-            <li>Pilih layanan dokumen</li>
-            <li>Upload berkas persyaratan</li>
-            <li>Menunggu proses verifikasi</li>
-            <li>Dokumen selesai</li>
-        </ol>
-    </section>
-
-    <!-- Call To Action -->
-    <section class="cta">
-        <h2>Mulai Ajukan Dokumen Anda Sekarang</h2>
-        <a href="register.php" class="btn-primary">Daftar Sekarang</a>
+    <section class="cara-cta" id="cara">
+        <div class="cara">
+            <h2>Cara Pengajuan</h2>
+            <ol>
+                <li>Registrasi akun</li>
+                <li>Login ke sistem</li>
+                <li>Pilih layanan dokumen</li>
+                <li>Upload berkas persyaratan</li>
+                <li>Menunggu proses verifikasi</li>
+                <li>Dokumen selesai</li>
+            </ol>
+        </div>
+    
+        <!-- Call To Action -->
+        <div class="cta">
+            <h2>Mulai Ajukan Dokumen Anda Sekarang</h2>
+            <a href="register.php" class="btn-secondary cta-btn">Daftar Sekarang</a>
+        </div>
     </section>
 
 </main>

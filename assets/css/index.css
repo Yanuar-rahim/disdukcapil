@@ -12,6 +12,10 @@ body {
     line-height: 1.6;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 /* GLOBAL */
 a {
     text-decoration: none;
@@ -40,21 +44,26 @@ a {
 
 .btn-primary {
     padding: 12px 24px;
-    background: #2563eb;
-    color: #fff;
+    background: white;
+    color: #2563eb;
     border-radius: 6px;
     font-weight: bold;
 }
 
 .btn-secondary {
     padding: 12px 24px;
-    border: 2px solid #2563eb;
-    color: #2563eb;
+    border: 2px solid white;
+    color: white;
     border-radius: 6px;
     font-weight: bold;
 }
 
-.btn-secondary:hover {
+.btn-primary:hover {
+    background: #2563eb;
+    color: #fff;
+}
+
+.btn-secondary  :hover {
     background: #2563eb;
     color: #fff;
 }
@@ -78,18 +87,69 @@ header h1 {
 }
 
 header nav {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.nav-link {
     list-style: none;
     display: flex;
     gap: 25px;
 }
 
-header nav a {
+.auth-btn {position: unset;
+    display: flex;
+    gap: 5px;
+}
+
+.auth-btn .login {
+    padding: 3px 20px;
+    background: #2563eb;
+    color: white;
+    border-radius: 6px;
+} 
+
+.auth-btn .regis {
+    padding: 3px 20px;
+    border: 2px solid #2563eb;
+    color: #2563eb;
+    border-radius: 6px;
+}
+
+.auth-btn .login:hover {
+    background: #1e40af;
+}
+
+.auth-btn .regis:hover {
+    background-color: #2563eb;
+    color: white;
+}
+
+.nav-link a {
+    position: relative;
     font-weight: 500;
 }
 
-header nav a:hover {
-    color: #2563eb;
+.nav-link a:hover {
+  color: #2563eb;
 }
+
+.nav-link a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #2563eb;
+  transition: width 0.3s ease;
+}
+
+.nav-link a:hover::after {
+  width: 100%;
+}
+
 
 /* HERO */
 .hero {
@@ -146,9 +206,20 @@ header nav a:hover {
     font-size: 14px;
 }
 
+.cara-cta {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
 /* CARA PENGAJUAN */
 .cara {
     margin-top: 60px;
+    background-color: white;
+    width: 50%;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
 .cara h2 {
@@ -168,20 +239,80 @@ header nav a:hover {
 
 /* CTA */
 .cta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin-top: 60px;
-    background: #2563eb;
+    background: linear-gradient(135deg, #2563eb, #1e40af);
     color: #fff;
     padding: 50px 20px;
     text-align: center;
     border-radius: 12px;
+    width: 50%;
 }
 
 .cta h2 {
     margin-bottom: 20px;
 }
 
+.cta-btn {
+    width: 50%;
+}
+
+.alert-success {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #d1fae5;
+  color: #065f46;
+  border-left: 5px solid #10b981;
+  padding: 15px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  z-index: 9999;
+  animation: fadeInOut 5s forwards;
+}
+
+.alert-error {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #fef2f2;
+  color: #f87171;
+  border-left: 5px solid #f87171;
+  padding: 15px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  z-index: 9999;
+  animation: fadeInOut 5s forwards;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
 /* FOOTER */
-.footer {
+footer {
     margin-top: 60px;
     background: #1e293b;
     color: #cbd5e1;
