@@ -1,4 +1,15 @@
 /* RESET */
+html,
+body {
+    height: 100%;  /* Memastikan body memenuhi seluruh tinggi layar */
+    display: flex;  /* Menggunakan flexbox */
+    flex-direction: column;  /* Menyusun elemen secara vertikal */
+}
+
+.container {
+    flex: 1;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -313,10 +324,11 @@ header nav {
 
 /* FOOTER */
 footer {
-    margin-top: 60px;
+    margin-top: 60px;  /* Spasi di atas footer */
     background: #1e293b;
     color: #cbd5e1;
     padding: 20px;
     text-align: center;
     font-size: 14px;
+    position: relative;  /* Agar footer tidak tumpang tindih dengan konten */
 }

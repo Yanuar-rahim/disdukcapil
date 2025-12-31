@@ -48,7 +48,7 @@ $query = mysqli_query($koneksi, "
                 <?php while ($row = mysqli_fetch_assoc($query)): ?>
                 <tr>
                     <td><?= $no++; ?></td>
-                    <td><?= htmlspecialchars($row['jenis_dokumen']); ?></td>
+                    <td><?= $row['jenis_dokumen']; ?></td>
                     <td><?= date('d-m-Y', strtotime($row['tanggal_pengajuan'])); ?></td>
                     <td>
                         <span class="status <?= strtolower($row['status']); ?>">
@@ -56,12 +56,19 @@ $query = mysqli_query($koneksi, "
                         </span>
                     </td>
                     <td>
-                        <a href="detail.php?id=<?= $row['id']; ?>" class="btn-sm btn-view">
+                        <a href="detail.php?id=<?= $row['id']; ?>" class="btn-sm">
                             Detail
                         </a>
-                        <a href="upload.php?id=<?= $row['id']; ?>" class="btn-sm">
+                        <a href="upload.php?id=<?= $row['id']; ?>" class="btn-sm" style="background: limegreen;">
                             Upload
                         </a>
+
+                        <!-- Tombol Download jika status 'Selesai' atau 'Terverifikasi' -->
+                        <?php if ($row['status'] == 'Selesai'): ?>
+                            <a href="download.php?id=<?= $row['id']; ?>" class="btn-sm" style="background-color: navy;">
+                                Download
+                            </a>
+                        <?php endif; ?>
                     </td>
                 </tr>
                 <?php endwhile; ?>

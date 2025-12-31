@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 30, 2025 at 10:40 PM
+-- Generation Time: Dec 31, 2025 at 07:29 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -60,11 +60,10 @@ CREATE TABLE `jenis_layanan` (
 --
 
 INSERT INTO `jenis_layanan` (`id`, `nama_layanan`, `deskripsi`, `created_at`) VALUES
-(1, 'KTP Elektronik', 'Pembuatan atau perubahan KTP Elektronik', '2025-12-31 03:41:26'),
-(2, 'Kartu Keluarga', 'Penerbitan atau perubahan data Kartu Keluarga', '2025-12-31 03:41:26'),
-(3, 'Akta Kelahiran', 'Pembuatan Akta Kelahiran', '2025-12-31 03:41:26'),
-(4, 'Akta Kematian', 'Pembuatan Akta Kematian', '2025-12-31 03:41:26'),
-(5, 'Surat Pindah Datang', 'Pengurusan surat pindah domisili', '2025-12-31 03:41:26');
+(1, 'KTP Elektronik', 'Pengajuan pembuatan dan perpanjangan KTP secara online.', '2025-12-31 03:41:26'),
+(2, 'Kartu Keluarga', 'Pengurusan KK baru, perubahan, dan pembaruan data.', '2025-12-31 03:41:26'),
+(3, 'Akta Kelahiran', 'Pengajuan akta kelahiran anak secara online.', '2025-12-31 03:41:26'),
+(4, 'Akta Kematian', 'Pelaporan dan penerbitan akta kematian.', '2025-12-31 03:41:26');
 
 -- --------------------------------------------------------
 
@@ -89,7 +88,7 @@ CREATE TABLE `pengajuan` (
 --
 
 INSERT INTO `pengajuan` (`id`, `nama`, `email`, `nik`, `jenis_dokumen`, `tanggal_pengajuan`, `status`, `keterangan`, `catatan_admin`) VALUES
-(6, 'Icut Miralda Lambate', 'icutm@gmail.com', 2147483647, 'KTP Elektronik', '2025-12-30', 'Menunggu', 'KTP saya hilang, dan saya tinggal jauh dari kantor catatan sipil.\r\n', NULL);
+(6, 'Icut Miralda Lambate', 'icutm@gmail.com', 2147483647, 'KTP Elektronik', '2025-12-30', 'Selesai', 'KTP saya hilang, dan saya tinggal jauh dari kantor catatan sipil.\r\n', '');
 
 -- --------------------------------------------------------
 
@@ -159,7 +158,7 @@ ALTER TABLE `berkas_pengajuan`
 -- AUTO_INCREMENT for table `jenis_layanan`
 --
 ALTER TABLE `jenis_layanan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `pengajuan`

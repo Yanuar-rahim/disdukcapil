@@ -1,3 +1,8 @@
+<?php
+include 'includes/koneksi.php';
+
+$query = mysqli_query($koneksi, "SELECT * FROM jenis_layanan")
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -28,31 +33,19 @@
     <section class="layanan">
         <h2>Layanan Kami</h2>
         <div class="layanan-grid">
-
+        <?php if (mysqli_num_rows($query) > 0): ?>
+            <?php while ($row = mysqli_fetch_array($query)): ?>
             <div class="card">
-                <h3>Pembuatan KTP</h3>
-                <p>Pengajuan pembuatan dan perpanjangan KTP secara online.</p>
+                <h3><?= $row['nama_layanan']; ?></h3>
+                <p><?= $row['deskripsi']; ?></p>
                 <a href="login.php" class="btn">Ajukan</a>
             </div>
-
-            <div class="card">
-                <h3>Kartu Keluarga</h3>
-                <p>Pengurusan KK baru, perubahan, dan pembaruan data.</p>
-                <a href="login.php" class="btn">Ajukan</a>
-            </div>
-
-            <div class="card">
-                <h3>Akta Kelahiran</h3>
-                <p>Pengajuan akta kelahiran anak secara online.</p>
-                <a href="login.php" class="btn">Ajukan</a>
-            </div>
-
-            <div class="card">
-                <h3>Akta Kematian</h3>
-                <p>Pelaporan dan penerbitan akta kematian.</p>
-                <a href="login.php" class="btn">Ajukan</a>
-            </div>
-
+            <?php endwhile; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="6" class="empty-data">Data tidak ditemukan</td>
+                    </tr>
+                <?php endif; ?>
         </div>
     </section>
     <section class="cara-cta" id="cara">
