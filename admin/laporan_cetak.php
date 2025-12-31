@@ -3,6 +3,11 @@ include '../includes/koneksi.php';  // Pastikan koneksi database mysqli
 
 $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : "";
 
+if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'admin') {
+    header("Location: ../index.php");
+    exit;
+}
+
 // Query untuk mencari data pengajuan tanpa prepared statement
 $sql = "SELECT * FROM pengajuan 
         WHERE 

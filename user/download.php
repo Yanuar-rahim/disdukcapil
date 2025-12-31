@@ -5,7 +5,7 @@ require_once('../tcpdf/tcpdf.php');  // Pastikan path TCPDF sudah benar
 
 /* PROTEKSI USER */
 if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'user') {
-    header("Location: ../login.php");
+    header("Location: ../index.php");
     exit;
 }
 

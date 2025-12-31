@@ -4,7 +4,7 @@ include '../includes/koneksi.php';
 
 // Pastikan user sudah login dan memiliki role admin
 if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'admin') {
-    header("Location: ../login.php");
+    header("Location: ../index.php");
     exit;
 }
 
