@@ -67,75 +67,73 @@ if (isset($_POST['change_password'])) {
 <head>
     <meta charset="UTF-8">
     <title>Profil Pengguna</title>
+    <link rel="stylesheet" href="../assets/css/index.css">
+    <link rel="stylesheet" href="../assets/css/user.css">
 </head>
 
 <body>
 
-    <div class="admin-wrapper">
+    <?php include '../includes/user/navbar.php'; ?>
 
-        <?php include '../includes/user/navbar.php'; ?>
+    <div class="admin-main" style="margin-top: 84px;">
+        <div class="admin-content profil-wrapper">
+            <h2>Profil Saya</h2>
 
-        <div class="admin-main">
-            <div class="admin-content profil-wrapper">
-                <h2>Profil Saya</h2>
+            <?php if ($err): ?>
+                <div class="alert error"><?= $err; ?></div>
+            <?php endif; ?>
 
-                <?php if ($err): ?>
-                    <div class="alert error"><?= $err; ?></div>
-                <?php endif; ?>
+            <?php if ($scs): ?>
+                <div class="alert success"><?= $scs; ?></div>
+            <?php endif; ?>
 
-                <?php if ($scs): ?>
-                    <div class="alert success"><?= $scs; ?></div>
-                <?php endif; ?>
+            <section class="card-profil">
+                <h3>Informasi Profil</h3>
+                <form method="post" action="profil.php">
+                    <div class="input-field">
+                        <label for="nama">Nama Lengkap</label>
+                        <input type="text" name="nama" value="<?= htmlspecialchars($user['nama']); ?>" required>
+                    </div>
 
-                <section class="card-profil">
-                    <h3>Informasi Profil</h3>
-                    <form method="post" action="profil.php">
-                        <div class="input-field">
-                            <label for="nama">Nama Lengkap</label>
-                            <input type="text" name="nama" value="<?= htmlspecialchars($user['nama']); ?>" required>
-                        </div>
+                    <div class="input-field">
+                        <label for="nik">NIK</label>
+                        <input type="text" name="nik" value="<?= htmlspecialchars($user['nik']); ?>" required>
+                    </div>
 
-                        <div class="input-field">
-                            <label for="nik">NIK</label>
-                            <input type="text" name="nik" value="<?= htmlspecialchars($user['nik']); ?>" required>
-                        </div>
+                    <div class="input-field">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" value="<?= htmlspecialchars($user['email']); ?>" required>
+                    </div>
 
-                        <div class="input-field">
-                            <label for="email">Email</label>
-                            <input type="email" name="email" value="<?= htmlspecialchars($user['email']); ?>" required>
-                        </div>
+                    <button type="submit" name="update" class="btn-primary">Perbarui Profil</button>
+                </form>
+            </section>
 
-                        <button type="submit" name="update" class="btn-primary">Perbarui Profil</button>
-                    </form>
-                </section>
+            <section class="card-profil">
+                <h3>Ganti Password</h3>
+                <form method="post">
+                    <div class="input-field">
+                        <label for="current_password">Password Lama</label>
+                        <input type="password" name="current_password" required>
+                    </div>
 
-                <section class="card-profil">
-                    <h3>Ganti Password</h3>
-                    <form method="post">
-                        <div class="input-field">
-                            <label for="current_password">Password Lama</label>
-                            <input type="password" name="current_password" required>
-                        </div>
+                    <div class="input-field">
+                        <label for="new_password">Password Baru</label>
+                        <input type="password" name="new_password" required>
+                    </div>
 
-                        <div class="input-field">
-                            <label for="new_password">Password Baru</label>
-                            <input type="password" name="new_password" required>
-                        </div>
+                    <div class="input-field">
+                        <label for="confirm_password">Konfirmasi Password Baru</label>
+                        <input type="password" name="confirm_password" required>
+                    </div>
 
-                        <div class="input-field">
-                            <label for="confirm_password">Konfirmasi Password Baru</label>
-                            <input type="password" name="confirm_password" required>
-                        </div>
-
-                        <button type="submit" name="change_password" class="btn-primary">Ganti Password</button>
-                    </form>
-                </section>
-            </div>
+                    <button type="submit" name="change_password" class="btn-primary">Ganti Password</button>
+                </form>
+            </section>
         </div>
-
-        <?php include '../includes/user/footer.php'; ?>
-
     </div>
+
+    <?php include '../includes/user/footer.php'; ?>
 
 </body>
 

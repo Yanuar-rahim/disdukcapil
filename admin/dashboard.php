@@ -22,21 +22,21 @@ $nama = $_SESSION['user_nama'];
 
 
 $qTotal = mysqli_query($koneksi, "SELECT * FROM pengajuan");
-$totalPengajuan = mysqli_num_rows($qTotal);  
+$totalPengajuan = mysqli_num_rows($qTotal);
 
 
 $qUser = mysqli_query($koneksi, "SELECT * FROM users WHERE role='user'");
-$totalUser = mysqli_num_rows($qUser);  
+$totalUser = mysqli_num_rows($qUser);
 
 
 $qSelesai = mysqli_query($koneksi, "SELECT * FROM pengajuan WHERE status='Selesai'");
-$totalSelesai = mysqli_num_rows($qSelesai);  
+$totalSelesai = mysqli_num_rows($qSelesai);
 
 
 function hitungStatus($koneksi, $status)
 {
     $q = mysqli_query($koneksi, "SELECT * FROM pengajuan WHERE status='$status'");
-    return mysqli_num_rows($q);  
+    return mysqli_num_rows($q);
 }
 
 $menunggu = hitungStatus($koneksi, 'Menunggu');
@@ -71,7 +71,12 @@ $selesai = hitungStatus($koneksi, 'Selesai');
 
         <div class="admin-main">
 
-            <?php include '../includes/admin/topbar.php'; ?>
+            <header class="topbar">
+                <span>Dashboard Admin</span>
+                <div class="admin-user">
+                    👤 <?= $_SESSION['user_nama']; ?>
+                </div>
+            </header>
 
             <div class="admin-content">
                 <h2>Dashboard</h2>

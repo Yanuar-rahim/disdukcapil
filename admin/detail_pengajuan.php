@@ -48,8 +48,12 @@ if (!$data) {
         <?php include '../includes/admin/sidebar.php'; ?>
 
         <div class="admin-main">
-            <?php include '../includes/admin/topbar.php'; ?>
-
+            <header class="topbar">
+                <span>Detail Pangajuan</span>
+                <div class="admin-user">
+                    👤 <?= $_SESSION['user_nama']; ?>
+                </div>
+            </header>
             <div class="admin-content">
 
                 <h2 style="margin-bottom: 10px;">Detail Pengajuan Dokumen</h2>

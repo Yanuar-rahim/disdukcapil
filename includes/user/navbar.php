@@ -9,8 +9,8 @@ $isLogin = isset($_SESSION['login']) && $_SESSION['login'] === true;
         <?php if (!$isLogin): ?>
             <div class="nav-link">
                 <a href="index.php#home">Home</a>
-                <a href="#layanan">Layanan</a>
-                <a href="#cara">Cara Pengajuan</a>
+                <a href="index.php#layanan">Layanan</a>
+                <a href="index.php#cara">Cara Pengajuan</a>
                 <a href="login.php">Cek Status</a>
             </div>
             <div class="auth-btn">

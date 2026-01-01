@@ -1,7 +1,7 @@
 /* RESET */
 html,
 body {
-    height: 100%;  /* Memastikan body memenuhi seluruh tinggi layar */
+    height: 100vh;  /* Memastikan body memenuhi seluruh tinggi layar */
     display: flex;  /* Menggunakan flexbox */
     flex-direction: column;  /* Menyusun elemen secara vertikal */
 }
@@ -81,8 +81,9 @@ a {
 
 /* NAVBAR */
 header {
-    position: sticky;
+    position: fixed;
     width: 100%;
+    z-index: 1000;
     top: 0;
     background: #ffffff;
     padding: 15px 60px;

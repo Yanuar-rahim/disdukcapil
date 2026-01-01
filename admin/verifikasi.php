@@ -42,7 +42,13 @@ if (isset($_POST['update'])) {
         <?php include '../includes/admin/sidebar.php'; ?>
 
         <div class="admin-main">
-            <header class="topbar">Verifikasi Pengajuan</header>
+            <header class="topbar">
+                <span>Verifikasi Pengajuan</span>
+                <div class="admin-user">
+                    👤 <?= $_SESSION['user_nama']; ?>
+                </div>
+            </header>
+            
 
             <div class="admin-content">
                 <div class="admin-content verify-wrapper">

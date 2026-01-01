@@ -20,7 +20,7 @@ if (isset($_GET['id'])) {
         echo '<style>
                 body {
                     font-family: Arial, sans-serif;
-                    margin: 0;
+                    margin: 20px;
                     padding: 0;
                     background-color: #f9f9f9;
                 }
@@ -90,6 +90,7 @@ if (isset($_GET['id'])) {
 
                 .card-body td {
                     background-color: #fff;
+                    text-align: center;
                 }
 
                 .card-body table tr:nth-child(even) {
@@ -103,6 +104,28 @@ if (isset($_GET['id'])) {
 
                 .row p {
                     width: 200px;
+                }
+
+                .btn-auth {
+                    width: 100%;
+                    padding: 12px;
+                    background: linear-gradient(135deg, #2563eb, #1e40af);
+                    color: #fff;
+                    border: none;
+                    border-radius: 6px;
+                    font-weight: bold;
+                    cursor: pointer;
+                    margin-top: 10px;
+                }
+
+                .btn-auth:hover {
+                    opacity: 0.9;
+                }
+
+                @media print {
+                    .btn-auth {
+                        display: none;
+                    }
                 }
 
                 .footer {
@@ -150,7 +173,7 @@ if (isset($_GET['id'])) {
             </div>
             <div class="row" style="align-items: baseline;">
                 <p><strong>Pesan</strong></p>
-                <span style="width: 100%;">: Harap disimpan dengan baik, Dokumen ini yang nantinya menjadi bukti ketika ' . $data['jenis_dokumen'] . ' sudah jadi. Pastikan semua data sudah benar dan sesuai dengan informasi yang tertera pada formulir pengajuan.</span>
+                <span style="width: 50%;">: Harap disimpan dengan baik, Dokumen ini yang nantinya menjadi bukti ketika ' . $data['jenis_dokumen'] . ' sudah jadi. Pastikan semua data sudah benar dan sesuai dengan informasi yang tertera pada formulir pengajuan.</span>
             </div>
         </div>
     </div>';
@@ -167,8 +190,8 @@ if (isset($_GET['id'])) {
 
         // Menampilkan data pengajuan berdasarkan ID
         echo '<tr>';
-        echo '<td style="text-align: center;">1</td>';
-        echo '<td><span>' . $data['nama'] . '</span></td>';
+        echo '<td>1</td>';
+        echo '<td style="text-align: left;"><span>' . $data['nama'] . '</span></td>';
         echo '<td><span>' . $data['nik'] . '</span></td>';
         echo '<td><span>' . $data['jenis_dokumen'] . '</span></td>';
         echo '<td><span>' . date('d-m-Y', strtotime($data['tanggal_pengajuan'])) . '</span></td>';
@@ -179,11 +202,15 @@ if (isset($_GET['id'])) {
         echo '</div>';
         echo '</div>';
 
+        // Button untuk mencetak dan kembali
+        echo '<div style="text-align: center; margin-top: 20px; display: flex; justify-content: center; width: 30%; gap: 10px;">
+                <button onclick="window.print()" class="btn-auth">Cetak Laporan</button>
+                <button onclick="window.history.back()" class="btn-auth">Kembali</button>
+              </div>';
+
         // Footer Laporan
         echo '<div class="footer"><p>&copy;2025 Disdukcapil. All rights reserved.</p></div>';
 
-        // Fungsi untuk mencetak laporan
-        echo '<script>window.print();</script>';
         echo '</div>';
     } else {
         echo "Pengajuan tidak ditemukan.";

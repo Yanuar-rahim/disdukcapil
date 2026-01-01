@@ -49,7 +49,7 @@ if (isset($_POST['register'])) {
 
     <?php include 'includes/user/navbar.php'; ?>
 
-    <main class="auth-container">
+    <main class="auth-container" style="margin: 230px 0 100px;">
         <div class="auth-card">
             <h2>Daftar Akun</h2>
             <p class="auth-subtitle">Buat akun baru</p>

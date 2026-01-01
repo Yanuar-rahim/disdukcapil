@@ -27,7 +27,12 @@ $query = mysqli_query($koneksi, "SELECT * FROM pengajuan ORDER BY id DESC ");
 
         <div class="admin-main">
 
-            <?php include '../includes/admin/topbar.php'; ?>
+            <header class="topbar">
+                <span>Data Pengajuan</span>
+                <div class="admin-user">
+                    👤 <?= $_SESSION['user_nama']; ?>
+                </div>
+            </header>
 
             <?php if (isset($_SESSION['error'])): ?>
                 <div class="alert-error"><?= $_SESSION['error']; ?></div>

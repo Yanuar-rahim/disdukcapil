@@ -36,7 +36,7 @@ $nama = $_SESSION['user_nama'];
 
     <?php include '../includes/user/navbar.php'; ?>
 
-    <section class="hero">
+    <section class="hero" style="margin-top: 82px;">
         <h1>Selamat Datang, <?= $nama; ?></h1>
         <p>Silakan ajukan dan pantau dokumen kependudukan Anda secara online.</p>
 
@@ -46,7 +46,7 @@ $nama = $_SESSION['user_nama'];
         </div>
     </section>
 
-    <main class="container">
+    <div class="container">
 
         <section class="layanan">
             <h2>Fitur Utama</h2>
@@ -84,7 +84,7 @@ $nama = $_SESSION['user_nama'];
             </ol>
         </section>
 
-    </main>
+    </div>
 
     <?php include '../includes/user/footer.php'; ?>
 

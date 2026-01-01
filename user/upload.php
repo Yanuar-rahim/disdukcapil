@@ -72,7 +72,7 @@ if (isset($_POST['upload'])) {
 
     <?php include '../includes/user/navbar.php'; ?>
 
-    <div class="container upload-wrapper">
+    <div class="container upload-wrapper" style="margin-top: 82px;">
         <div class="upload-card">
             <h2>Upload Persyaratan Dokumen</h2>
             <p>Silakan unggah berkas sesuai dengan persyaratan dokumen.</p>

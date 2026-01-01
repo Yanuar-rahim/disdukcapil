@@ -29,7 +29,7 @@ $query = mysqli_query($koneksi, "
 
     <?php include '../includes/user/navbar.php'; ?>
 
-    <div class="container">
+    <div class="container" style="margin-top: 80px;">
         <h2>Status Pengajuan Dokumen</h2>
 
         <div class="table-wrapper">

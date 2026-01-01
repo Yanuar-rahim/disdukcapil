@@ -41,7 +41,7 @@ if (!$data) {
 
     <?php include '../includes/user/navbar.php'; ?>
 
-    <div class="container">
+    <div class="container" style="margin-top: 82px">
         <h2>Detail Pengajuan</h2>
 
         <div class="detail-card">

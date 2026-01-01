@@ -18,7 +18,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM jenis_layanan")
         <?php include 'includes/user/navbar.php'; ?>
     </span>
 
-    <section class="hero">
+    <section class="hero" style="margin-top: 82px;">
         <h1>Layanan Pengajuan Dokumen Kependudukan Online</h1>
         <p>Ajukan KTP, KK, Akta, dan dokumen lainnya tanpa datang ke kantor.</p>
         <div class="hero-btn">
@@ -29,7 +29,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM jenis_layanan")
     </section>
 
 
-    <main class="container">
+    <div class="container">
 
         <section class="layanan">
             <h2>Layanan Kami</h2>
@@ -68,7 +68,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM jenis_layanan")
             </div>
         </section>
 
-    </main>
+    </div>
 
     <?php include 'includes/user/footer.php'; ?>
 

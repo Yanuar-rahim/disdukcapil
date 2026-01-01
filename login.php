@@ -54,7 +54,7 @@ if (isset($_POST['login'])) {
 
     <?php include 'includes/user/navbar.php'; ?>
 
-    <main class="auth-container">
+    <main class="auth-container" style="margin-top: 100px;">
         <div class="auth-card">
             <h2>Login</h2>
             <p class="auth-subtitle">Masuk ke sistem</p>
