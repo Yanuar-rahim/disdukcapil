@@ -4,39 +4,39 @@ include "../includes/koneksi.php";
 
 $no = 1;
 
-/* PROTEKSI ADMIN */
+
 if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../index.php");
     exit;
 }
 
-/* ALERT SUCCESS */
+
 $alertSuccess = "";
 if (isset($_SESSION['success'])) {
     $alertSuccess = $_SESSION['success'];
     unset($_SESSION['success']);
 }
 
-/* DATA ADMIN */
+
 $nama = $_SESSION['user_nama'];
 
-/* TOTAL PENGAJUAN */
+
 $qTotal = mysqli_query($koneksi, "SELECT * FROM pengajuan");
-$totalPengajuan = mysqli_num_rows($qTotal);  // Menggunakan mysqli_num_rows untuk menghitung jumlah pengajuan
+$totalPengajuan = mysqli_num_rows($qTotal);  
 
-/* TOTAL USER (ROLE USER) */
+
 $qUser = mysqli_query($koneksi, "SELECT * FROM users WHERE role='user'");
-$totalUser = mysqli_num_rows($qUser);  // Menggunakan mysqli_num_rows untuk menghitung jumlah pengguna dengan role 'user'
+$totalUser = mysqli_num_rows($qUser);  
 
-/* TOTAL PENGAJUAN SELESAI */
+
 $qSelesai = mysqli_query($koneksi, "SELECT * FROM pengajuan WHERE status='Selesai'");
-$totalSelesai = mysqli_num_rows($qSelesai);  // Menggunakan mysqli_num_rows untuk menghitung jumlah pengajuan yang sudah selesai
+$totalSelesai = mysqli_num_rows($qSelesai);  
 
-/* RINGKASAN STATUS */
+
 function hitungStatus($koneksi, $status)
 {
     $q = mysqli_query($koneksi, "SELECT * FROM pengajuan WHERE status='$status'");
-    return mysqli_num_rows($q);  // Menggunakan mysqli_num_rows untuk menghitung jumlah pengajuan dengan status tertentu
+    return mysqli_num_rows($q);  
 }
 
 $menunggu = hitungStatus($koneksi, 'Menunggu');

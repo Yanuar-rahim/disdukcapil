@@ -2,22 +2,19 @@
 session_start();
 include '../includes/koneksi.php';
 
-/* PROTEKSI USER */
 if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'user') {
     header("Location: ../index.php");
     exit;
 }
 
-/* VALIDASI ID */
 if (!isset($_GET['id'])) {
     header("Location: status.php");
     exit;
 }
 
-$pengajuan_id = $_GET['id'];
+$pengajuan_id = $_GET['id'];    
 $nama = $_SESSION['user_nama'];
 
-/* CEK KEPEMILIKAN */
 $cek = mysqli_query($koneksi, "
     SELECT * FROM pengajuan 
     WHERE id='$pengajuan_id' AND nama='$nama'
@@ -31,7 +28,6 @@ if (mysqli_num_rows($cek) == 0) {
 $success = "";
 $error = "";
 
-/* PROSES UPLOAD */
 if (isset($_POST['upload'])) {
 
     $nama_berkas = $_POST['nama_berkas'];
@@ -64,50 +60,53 @@ if (isset($_POST['upload'])) {
 ?>
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <title>Upload Dokumen</title>
     <link rel="stylesheet" href="../assets/css/index.css">
     <link rel="stylesheet" href="../assets/css/user.css">
 </head>
+
 <body>
 
-<?php include '../includes/user/navbar.php'; ?>
+    <?php include '../includes/user/navbar.php'; ?>
 
-<div class="container upload-wrapper">
-    <div class="upload-card">
-        <h2>Upload Persyaratan Dokumen</h2>
-        <p>Silakan unggah berkas sesuai dengan persyaratan dokumen.</p>
+    <div class="container upload-wrapper">
+        <div class="upload-card">
+            <h2>Upload Persyaratan Dokumen</h2>
+            <p>Silakan unggah berkas sesuai dengan persyaratan dokumen.</p>
 
-        <?php if ($success): ?>
-            <div class="alert success"><?= $success; ?></div>
-        <?php endif; ?>
+            <?php if ($success): ?>
+                <div class="alert success"><?= $success; ?></div>
+            <?php endif; ?>
 
-        <?php if ($error): ?>
-            <div class="alert error"><?= $error; ?></div>
-        <?php endif; ?>
+            <?php if ($error): ?>
+                <div class="alert error"><?= $error; ?></div>
+            <?php endif; ?>
 
-        <form method="post" enctype="multipart/form-data">
+            <form method="post" enctype="multipart/form-data">
 
-            <div class="form-group">
-                <label>Nama Berkas</label>
-                <input type="text" name="nama_berkas" required>
-            </div>
+                <div class="form-group">
+                    <label>Nama Berkas</label>
+                    <input type="text" name="nama_berkas" required>
+                </div>
 
-            <div class="form-group">
-                <label>Upload File</label>
-                <input type="file" name="file" required>
-                <small>Format yang diperbolehkan: PDF, JPG, PNG</small>
-            </div>
+                <div class="form-group">
+                    <label>Upload File</label>
+                    <input type="file" name="file" required>
+                    <small>Format yang diperbolehkan: PDF, JPG, PNG</small>
+                </div>
 
-            <button type="submit" name="upload" class="btn-upload">
-                Upload Dokumen
-            </button>
+                <button type="submit" name="upload" class="btn-upload">
+                    Upload Dokumen
+                </button>
 
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 
-<?php include '../includes/user/footer.php'; ?>
+    <?php include '../includes/user/footer.php'; ?>
 </body>
+
 </html>

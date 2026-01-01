@@ -2,7 +2,6 @@
 session_start();
 include '../includes/koneksi.php';
 
-/* PROTEKSI ADMIN */
 if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../index.php");
     exit;
@@ -10,7 +9,6 @@ if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'admin') {
 
 $nama = $_SESSION['user_nama'];
 
-/* FILTER */
 $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : "";
 
 $query = mysqli_query($koneksi, "
@@ -48,7 +46,6 @@ $query = mysqli_query($koneksi, "
 
                 <h2 style="margin-bottom: 10px;">Laporan Pengajuan</h2>
 
-                <!-- FILTER & ACTION -->
                 <div class="laporan-action">
                     <form method="get" class="search-box">
                         <input type="text" name="keyword" placeholder="Cari nama, NIK, layanan, status"
@@ -62,7 +59,6 @@ $query = mysqli_query($koneksi, "
                     </div>
                 </div>
 
-                <!-- TABLE -->
                 <div class="table-wrapper">
                     <table class="admin-table">
                         <thead>

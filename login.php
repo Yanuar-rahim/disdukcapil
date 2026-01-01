@@ -19,14 +19,12 @@ if (isset($_POST['login'])) {
 
         if (password_verify($password, $user['password'])) {
 
-            // SESSION LOGIN
             $_SESSION['login'] = true;
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_nama'] = $user['nama'];
             $_SESSION['role'] = $user['role'];
             $_SESSION['success'] = "Berhasil login! Selamat datang, " . $user['nama'] . ".";
 
-            // REDIRECT BERDASARKAN ROLE
             if ($user['role'] == 'admin') {
                 header("Location: admin/dashboard.php");
             } else {
@@ -44,47 +42,50 @@ if (isset($_POST['login'])) {
 ?>
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <title>Login | Disdukcapil</title>
     <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="assets/css/auth.css">
 </head>
+
 <body>
 
-<?php include 'includes/user/navbar.php'; ?>
+    <?php include 'includes/user/navbar.php'; ?>
 
-<main class="auth-container">
-    <div class="auth-card">
-        <h2>Login</h2>
-        <p class="auth-subtitle">Masuk ke sistem</p>
+    <main class="auth-container">
+        <div class="auth-card">
+            <h2>Login</h2>
+            <p class="auth-subtitle">Masuk ke sistem</p>
 
-        <?php if ($error): ?>
-            <div class="alert error"><?= $error; ?></div>
-        <?php endif; ?>
+            <?php if ($error): ?>
+                <div class="alert error"><?= $error; ?></div>
+            <?php endif; ?>
 
-        <form method="post">
-            <div class="form-group">
-                <label>Email / NIK</label>
-                <input type="text" name="username" required>
-            </div>
+            <form method="post">
+                <div class="form-group">
+                    <label>Email / NIK</label>
+                    <input type="text" name="username" required>
+                </div>
 
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" name="password" required>
-            </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" required>
+                </div>
 
-            <button type="submit" name="login" class="btn-auth">Login</button>
-        </form>
+                <button type="submit" name="login" class="btn-auth">Login</button>
+            </form>
 
-        <p class="auth-link">
-            Belum punya akun?
-            <a href="register.php">Daftar sekarang</a>
-        </p>
-    </div>
-</main>
+            <p class="auth-link">
+                Belum punya akun?
+                <a href="register.php">Daftar sekarang</a>
+            </p>
+        </div>
+    </main>
 
-<?php include 'includes/user/footer.php'; ?>
+    <?php include 'includes/user/footer.php'; ?>
 
 </body>
+
 </html>

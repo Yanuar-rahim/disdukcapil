@@ -2,13 +2,11 @@
 session_start();
 include '../includes/koneksi.php';
 
-/* PROTEKSI ADMIN */
 if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../index.php");
     exit;
 }
 
-/* TAMBAH LAYANAN */
 if (isset($_POST['tambah'])) {
     $nama = $_POST['nama_layanan'];
     $desk = $_POST['deskripsi'];
@@ -24,7 +22,6 @@ if (isset($_POST['tambah'])) {
     }
 }
 
-/* EDIT LAYANAN */
 if (isset($_GET['edit'])) {
     $id = $_GET['edit'];
     $query = mysqli_query($koneksi, "SELECT * FROM jenis_layanan WHERE id='$id'");
@@ -42,16 +39,13 @@ if (isset($_POST['update'])) {
         mysqli_query($koneksi, "
             UPDATE jenis_layanan SET nama_layanan='$nama', deskripsi='$desk' WHERE id='$id'
         ");
-        // Simpan pesan ke session sebelum redirect
         $_SESSION['success'] = "Jenis layanan berhasil ditambahkan";
 
-        // Redirect ke halaman yang sama
         header("Location: layanan.php");
         exit;
     }
 }
 
-/* HAPUS LAYANAN */
 if (isset($_GET['hapus'])) {
     $id = $_GET['hapus'];
     mysqli_query($koneksi, "DELETE FROM jenis_layanan WHERE id='$id'");
@@ -60,7 +54,6 @@ if (isset($_GET['hapus'])) {
     exit;
 }
 
-/* DATA */
 $data = mysqli_query($koneksi, "SELECT * FROM jenis_layanan ORDER BY id DESC");
 ?>
 <!DOCTYPE html>
@@ -100,7 +93,6 @@ $data = mysqli_query($koneksi, "SELECT * FROM jenis_layanan ORDER BY id DESC");
                 <?php endif; ?>
 
 
-                <!-- FORM TAMBAH LAYANAN -->
                 <div class="layanan-card">
                     <h3>Tambah Layanan</h3>
 
@@ -121,7 +113,6 @@ $data = mysqli_query($koneksi, "SELECT * FROM jenis_layanan ORDER BY id DESC");
                     </form>
                 </div>
 
-                <!-- FORM EDIT LAYANAN -->
                 <?php if (isset($_GET['edit'])): ?>
                     <div class="layanan-card">
                         <h3>Edit Layanan</h3>
@@ -146,7 +137,6 @@ $data = mysqli_query($koneksi, "SELECT * FROM jenis_layanan ORDER BY id DESC");
                     </div>
                 <?php endif; ?>
 
-                <!-- TABEL DATA -->
                 <div class="table-wrapper">
                     <table class="admin-table">
                         <thead>

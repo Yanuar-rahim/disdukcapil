@@ -2,20 +2,16 @@
 session_start();
 include '../includes/koneksi.php';
 
-// Pastikan user sudah login
 if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'user') {
     header("Location: ../index.php");
     exit;
 }
 
-// Ambil ID user dari session
 $user_id = $_SESSION['user_id'];
 
-// Ambil data user dari database
 $query = mysqli_query($koneksi, "SELECT * FROM users WHERE id = '$user_id'");
 $user = mysqli_fetch_assoc($query);
 
-// Pastikan data user ada
 if (!$user) {
     echo "User tidak ditemukan.";
     exit;
@@ -24,7 +20,6 @@ if (!$user) {
 $err = "";
 $scs = "";
 
-// Proses update profil
 if (isset($_POST['update'])) {
     $nama = mysqli_real_escape_string($koneksi, $_POST['nama']);
     $nik = mysqli_real_escape_string($koneksi, $_POST['nik']);
@@ -32,15 +27,14 @@ if (isset($_POST['update'])) {
 
     $update_query = "UPDATE users SET nama='$nama', nik='$nik', email='$email' WHERE id='$user_id'";
     if (mysqli_query($koneksi, $update_query)) {
-        $_SESSION['user_nama'] = $nama;  // Update session jika nama berubah
-        header("Location: profil.php");  // Redirect kembali ke halaman profil
+        $_SESSION['user_nama'] = $nama;
+        header("Location: profil.php");
         exit;
     } else {
         $err = "Gagal memperbarui profil.";
     }
 }
 
-// Proses ganti password
 if (isset($_POST['change_password'])) {
     $current_password = $_POST['current_password'];
     $new_password = $_POST['new_password'];
@@ -69,84 +63,80 @@ if (isset($_POST['change_password'])) {
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <title>Profil Pengguna</title>
-    <link rel="stylesheet" href="../assets/css/index.css">  <!-- Menggunakan index.css untuk konsistensi -->
-    <link rel="stylesheet" href="../assets/css/user.css">  <!-- Menggunakan user.css untuk tampilan user -->
 </head>
+
 <body>
 
-<div class="admin-wrapper">
+    <div class="admin-wrapper">
 
-<?php include '../includes/user/navbar.php'; ?>
+        <?php include '../includes/user/navbar.php'; ?>
 
-<!-- Main Content Profil User -->
-<div class="admin-main">
-    <div class="admin-content profil-wrapper">
-        <h2>Profil Saya</h2>
+        <div class="admin-main">
+            <div class="admin-content profil-wrapper">
+                <h2>Profil Saya</h2>
 
-        <!-- Menampilkan pesan error jika ada -->
-        <?php if ($err): ?>
-            <div class="alert error"><?= $err; ?></div>
-        <?php endif; ?>
+                <?php if ($err): ?>
+                    <div class="alert error"><?= $err; ?></div>
+                <?php endif; ?>
 
-        <!-- Menampilkan pesan sukses jika ada -->
-        <?php if ($scs): ?>
-            <div class="alert success"><?= $scs; ?></div>
-        <?php endif; ?>
+                <?php if ($scs): ?>
+                    <div class="alert success"><?= $scs; ?></div>
+                <?php endif; ?>
 
-        <!-- Form Edit Profil -->
-        <section class="card-profil">
-            <h3>Informasi Profil</h3>
-            <form method="post" action="profil.php">
-                <div class="input-field">
-                    <label for="nama">Nama Lengkap</label>
-                    <input type="text" name="nama" value="<?= htmlspecialchars($user['nama']); ?>" required>
-                </div>
+                <section class="card-profil">
+                    <h3>Informasi Profil</h3>
+                    <form method="post" action="profil.php">
+                        <div class="input-field">
+                            <label for="nama">Nama Lengkap</label>
+                            <input type="text" name="nama" value="<?= htmlspecialchars($user['nama']); ?>" required>
+                        </div>
 
-                <div class="input-field">
-                    <label for="nik">NIK</label>
-                    <input type="text" name="nik" value="<?= htmlspecialchars($user['nik']); ?>" required>
-                </div>
+                        <div class="input-field">
+                            <label for="nik">NIK</label>
+                            <input type="text" name="nik" value="<?= htmlspecialchars($user['nik']); ?>" required>
+                        </div>
 
-                <div class="input-field">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" value="<?= htmlspecialchars($user['email']); ?>" required>
-                </div>
+                        <div class="input-field">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" value="<?= htmlspecialchars($user['email']); ?>" required>
+                        </div>
 
-                <button type="submit" name="update" class="btn-primary">Perbarui Profil</button>
-            </form>
-        </section>
+                        <button type="submit" name="update" class="btn-primary">Perbarui Profil</button>
+                    </form>
+                </section>
 
-        <!-- Form Ganti Password -->
-        <section class="card-profil">
-            <h3>Ganti Password</h3>
-            <form method="post">
-                <div class="input-field">
-                    <label for="current_password">Password Lama</label>
-                    <input type="password" name="current_password" required>
-                </div>
+                <section class="card-profil">
+                    <h3>Ganti Password</h3>
+                    <form method="post">
+                        <div class="input-field">
+                            <label for="current_password">Password Lama</label>
+                            <input type="password" name="current_password" required>
+                        </div>
 
-                <div class="input-field">
-                    <label for="new_password">Password Baru</label>
-                    <input type="password" name="new_password" required>
-                </div>
+                        <div class="input-field">
+                            <label for="new_password">Password Baru</label>
+                            <input type="password" name="new_password" required>
+                        </div>
 
-                <div class="input-field">
-                    <label for="confirm_password">Konfirmasi Password Baru</label>
-                    <input type="password" name="confirm_password" required>
-                </div>
+                        <div class="input-field">
+                            <label for="confirm_password">Konfirmasi Password Baru</label>
+                            <input type="password" name="confirm_password" required>
+                        </div>
 
-                <button type="submit" name="change_password" class="btn-primary">Ganti Password</button>
-            </form>
-        </section>
+                        <button type="submit" name="change_password" class="btn-primary">Ganti Password</button>
+                    </form>
+                </section>
+            </div>
+        </div>
+
+        <?php include '../includes/user/footer.php'; ?>
+
     </div>
-</div>
-
-<?php include '../includes/user/footer.php'; ?>
-
-</div>
 
 </body>
+
 </html>
