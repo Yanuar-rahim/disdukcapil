@@ -149,31 +149,31 @@ if (isset($_GET['id'])) {
         <div class="card-body">
             <div class="row">
                 <p><strong>Nama</strong></p>
-                <span>: ' . $data['nama'] . '</span>
+                <span>' . $data['nama'] . '</span>
             </div>
             <div class="row">
                 <p><strong>NIK</strong></p>
-                <span>: ' . $data['nik'] . '</span>
+                <span>' . $data['nik'] . '</span>
             </div>
             <div class="row">
                 <p><strong>Jenis Dokumen</strong></p>
-                <span>: ' . $data['jenis_dokumen'] . '</span>
+                <span>' . $data['jenis_dokumen'] . '</span>
             </div>
             <div class="row">
                 <p><strong>Tanggal Pengajuan</strong></p>
-                <span>: ' . date('d-m-Y', strtotime($data['tanggal_pengajuan'])) . '</span>
+                <span>' . date('d-m-Y', strtotime($data['tanggal_pengajuan'])) . '</span>
             </div>
             <div class="row">
                 <p><strong>Status Pengajuan</strong></p>
-                <span>: ' . $data['status'] . '</span>
+                <span>' . $data['status'] . '</span>
             </div>
             <div class="row">
                 <p><strong>Keterangan</strong></p>
-                <span>: ' . $data['keterangan'] . '</span>
+                <span>' . $data['keterangan'] . '</span>
             </div>
             <div class="row" style="align-items: baseline;">
                 <p><strong>Pesan</strong></p>
-                <span style="width: 50%;">: Harap disimpan dengan baik, Dokumen ini yang nantinya menjadi bukti ketika ' . $data['jenis_dokumen'] . ' sudah jadi. Pastikan semua data sudah benar dan sesuai dengan informasi yang tertera pada formulir pengajuan.</span>
+                <span style="width: 50%;">Harap disimpan dengan baik, Dokumen ini yang nantinya menjadi bukti ketika ' . $data['jenis_dokumen'] . ' sudah jadi. Pastikan semua data sudah benar dan sesuai dengan informasi yang tertera pada formulir pengajuan.</span>
             </div>
         </div>
     </div>';
