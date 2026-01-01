@@ -1,9 +1,9 @@
 <?php
 session_start();
-include '../includes/koneksi.php';
-require_once('../tcpdf/tcpdf.php');
+include "../includes/koneksi.php";
 
-if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'user') {
+// Pastikan user sudah login dan memiliki role user
+if (!isset($_SESSION['role']) || $_SESSION['role'] != 'user') {
     header("Location: ../index.php");
     exit;
 }
@@ -11,52 +11,180 @@ if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'user') {
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    $query = mysqli_query($koneksi, "SELECT * FROM pengajuan WHERE id='$id' AND nama = '$_SESSION[user_nama]'");
+    // Query untuk mengambil data berdasarkan ID pengajuan
+    $query = mysqli_query($koneksi, "SELECT * FROM pengajuan WHERE id = '$id'");
     $data = mysqli_fetch_assoc($query);
 
     if ($data) {
-        $pdf = new TCPDF();
+        // Styling untuk tampilan laporan menggunakan layout card
+        echo '<style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #f9f9f9;
+                }
 
-        $pdf->SetMargins(15, 30, 15);
-        $pdf->SetFont('helvetica', '', 12);
+                .container {
+                    padding: 20px 30px;
+                    margin-top: 20px;
+                    background-color: white;
+                    border-radius: 8px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                    width: 80%;
+                    margin: 0 auto;
+                }
 
-        $pdf->AddPage();
+                h1 {
+                    text-align: center;
+                    color: #333;
+                    font-size: 24px;
+                    margin-bottom: 20px;
+                    font-weight: bold;
+                }
 
-        $pdf->SetFont('helvetica', 'B', 16);
-        $pdf->Cell(0, 10, 'Laporan Pengajuan Dokumen', 0, 1, 'C');
-        $pdf->Ln(5);
+                .card {
+                    background-color: #fff;
+                    border-radius: 8px;
+                    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                    padding: 20px;
+                }
 
-        $pdf->SetFont('helvetica', '', 12);
+                .card-header {
+                    font-size: 18px;
+                    font-weight: bold;
+                    color: #333;
+                    margin-bottom: 15px;
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 10px;
+                    border-radius: 5px;
+                }
 
-        $pdf->Cell(0, 10, 'Nama Lengkap: ' . $data['nama'], 0, 1);
-        $pdf->Cell(0, 10, 'NIK: ' . $data['nik'], 0, 1);
-        $pdf->Cell(0, 10, 'Jenis Dokumen: ' . $data['jenis_dokumen'], 0, 1);
-        $pdf->Cell(0, 10, 'Tanggal Pengajuan: ' . date('d-m-Y', strtotime($data['tanggal_pengajuan'])), 0, 1);
-        $pdf->Cell(0, 10, 'Status Pengajuan: ' . $data['status'], 0, 1);
-        $pdf->Ln(5);
+                .card-body {
+                    font-size: 14px;
+                    line-height: 1.6;
+                    color: #333;
+                    margin-bottom: 20px;
+                }
 
-        $pdf->Cell(0, 10, 'Keterangan: ' . $data['keterangan'], 0, 1);
-        $pdf->Ln(10);
+                .card-body table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin: 20px 0;
+                    font-size: 14px;
+                }
 
-        if ($data) {
-            $pdf->MultiCell(0, 10, 'Harap disimpan dengan baik. Dokumen ini yang nantinya menjadi bukti ketika ' . $data['jenis_dokumen'] . ' sudah jadi. Pastikan semua data sudah benar dan sesuai dengan informasi yang tertera pada formulir pengajuan.', 0, 1);
-        } else {
-            $pdf->Cell(0, 20, 'Data layanan tidak ditemukan.', 0, 1);
-        }
+                .card-body th, .card-body td {
+                    padding: 10px;
+                    text-align: left;
+                    border: 1px solid #ddd;
+                }
 
-        $pdf->Ln(10);
+                .card-body th {
+                    background-color: #4CAF50;
+                    color: white;
+                    text-align: center;
+                }
 
-        $pdf->SetLineWidth(0.5);
-        $pdf->Line(15, $pdf->GetY(), 195, $pdf->GetY());
-        $pdf->Ln(5);
+                .card-body td {
+                    background-color: #fff;
+                }
 
-        $pdf->SetFont('helvetica', 'I', 8);
-        $pdf->Cell(0, 10, 'Disdukcapil | Laporan Pengajuan', 0, 1, 'C');
+                .card-body table tr:nth-child(even) {
+                    background-color: #f2f2f2;
+                }
 
-        $file_name = 'Laporan_Pengajuan_' . $data['id'] . '.pdf';
+                .row {
+                    display: flex;
+                    align-items: center;
+                }
 
-        $pdf->Output($file_name, 'D');
-        exit;
+                .row p {
+                    width: 200px;
+                }
+
+                .footer {
+                    text-align: center;
+                    margin-top: 20px;
+                    font-size: 12px;
+                    color: #777;
+                    margin-top: 40px;
+                }
+
+            </style>';
+
+        echo '<div class="container">';
+
+        // Judul Laporan
+        echo '<h1>Laporan Pengajuan Dokumen Disdukcapil</h1>';
+
+        // Card untuk Data Pengajuan
+        echo '<div class="card">
+        <div class="card-header">Informasi Pengajuan</div>
+        <div class="card-body">
+            <div class="row">
+                <p><strong>Nama</strong></p>
+                <span>: ' . $data['nama'] . '</span>
+            </div>
+            <div class="row">
+                <p><strong>NIK</strong></p>
+                <span>: ' . $data['nik'] . '</span>
+            </div>
+            <div class="row">
+                <p><strong>Jenis Dokumen</strong></p>
+                <span>: ' . $data['jenis_dokumen'] . '</span>
+            </div>
+            <div class="row">
+                <p><strong>Tanggal Pengajuan</strong></p>
+                <span>: ' . date('d-m-Y', strtotime($data['tanggal_pengajuan'])) . '</span>
+            </div>
+            <div class="row">
+                <p><strong>Status Pengajuan</strong></p>
+                <span>: ' . $data['status'] . '</span>
+            </div>
+            <div class="row">
+                <p><strong>Keterangan</strong></p>
+                <span>: ' . $data['keterangan'] . '</span>
+            </div>
+            <div class="row" style="align-items: baseline;">
+                <p><strong>Pesan</strong></p>
+                <span style="width: 100%;">: Harap disimpan dengan baik, Dokumen ini yang nantinya menjadi bukti ketika ' . $data['jenis_dokumen'] . ' sudah jadi. Pastikan semua data sudah benar dan sesuai dengan informasi yang tertera pada formulir pengajuan.</span>
+            </div>
+        </div>
+    </div>';
+
+        // Card untuk Tabel Laporan
+        echo '<div class="card">
+                <div class="card-header">Detail Pengajuan</div>
+                <div class="card-body">
+                    <table>
+                        <thead>
+                            <tr><th>No</th><th>Nama</th><th>NIK</th><th>Jenis Dokumen</th><th>Tanggal Pengajuan</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>';
+
+        // Menampilkan data pengajuan berdasarkan ID
+        echo '<tr>';
+        echo '<td style="text-align: center;">1</td>';
+        echo '<td><span>' . $data['nama'] . '</span></td>';
+        echo '<td><span>' . $data['nik'] . '</span></td>';
+        echo '<td><span>' . $data['jenis_dokumen'] . '</span></td>';
+        echo '<td><span>' . date('d-m-Y', strtotime($data['tanggal_pengajuan'])) . '</span></td>';
+        echo '<td><span>' . $data['status'] . '</span></td>';
+        echo '</tr>';
+
+        echo '</tbody></table>';
+        echo '</div>';
+        echo '</div>';
+
+        // Footer Laporan
+        echo '<div class="footer"><p>&copy;2025 Disdukcapil. All rights reserved.</p></div>';
+
+        // Fungsi untuk mencetak laporan
+        echo '<script>window.print();</script>';
+        echo '</div>';
     } else {
         echo "Pengajuan tidak ditemukan.";
     }
